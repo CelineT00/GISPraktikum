@@ -1,0 +1,43 @@
+div{
+    position: static;
+    width:300px;
+    border:100px;
+    padding: 30px;
+    margin: 30px;
+}
+
+CSStagn{
+    background: purple;
+    color: rosybrown;
+}
+
+#link {
+    background: powderblue;
+    color: royalblue;
+}
+
+.class{
+    font-size: 14em;
+    color:goldenrod;  
+}
+
+[href]{
+    background: rgba(14, 230,7, 0.7);
+}
+
+CSStagn CSStagm{
+    background: black;
+}
+
+#link, CSStagn{
+    background:palevioletred;
+}
+
+[href].CSStagm{
+    background:rebeccapurple;
+    color: seagreen;
+}
+
+p {
+    font-family: Italianno;
+}
