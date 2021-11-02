@@ -1,9 +1,12 @@
-div{
-    position: static;
-    width:300px;
-    border:100px;
-    padding: 30px;
-    margin: 30px;
+nav{
+    font-family: Italianno;
+}
+
+.mainNav{
+    height: 40px;
+    background: lavender;
+    font-family: Italianno;
+    padding: 5px;
 }
 
 CSStagn{
@@ -41,3 +44,29 @@ CSStagn CSStagm{
 p {
     font-family: Italianno;
 }
+
+input:disabled + span::after {content: " nicht auswählbar"}
+      input:enabled + span::after {content: " auswählbar"}
+      input:checked + span::after {content: " ausgewählt"}
+      input:disabled { outline: 2px solid darkred;}
+      input:checked  { outline: 2px solid lightgreen; }
+
+a:hover {
+     background-color: lavender;     
+    }
+
+.exciting-text::after {
+    content: "Interesting things!";
+        color: plum;
+    }
+
+q::before {
+    content: "*";
+    color: blue;
+    }
+
+p::selection {
+    color: white;
+    background: black;
+  }
+
