@@ -9,15 +9,27 @@ nav{
   padding: 5px;
 }
 
+footer{
+  font-family: Italianno;
+}
+
+.mainFooter{
+  height: 40px;
+  background: lavender;
+  font-family: Italianno;
+  padding: 5px;
+}
+
+@keyframes example {
+  from {background-color: blue;}
+  to {background-color: blueviolet;}
+}
+
 div {
-    width: 50px;
-    height: calc(5 * 10px);
-    border: 3px solid rgb(200, 50, 50);
-    background-image: radial-gradient(
-      circle closest-side at center,
-      white,
-      yellow,
-      orange
-    );
-    transform: translate(20px, 10px) rotate(45deg);
-  }
+  width: 100px;
+  height: 100px;
+  background-color: blue;
+  animation-name: example;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+}

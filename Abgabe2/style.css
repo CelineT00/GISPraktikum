@@ -1,7 +1,8 @@
 @media (min-width: 50em) {
     article {
+        float: left;
+        width: 50%;
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
     }
   }
 
@@ -16,8 +17,27 @@ nav{
     padding: 5px;
 }
 
+footer{
+    font-family: Italianno;
+}
+
+.mainFooter{
+    height: 20px;
+    background: lavender;
+    font-family: Italianno;
+    padding: 10px;
+}
+
+div.fixed{
+    position: relative;
+    bottom: 0;
+    right: 0;
+    width: 300px;
+    border: 3px solid #73AD21;
+}
+
 CSStagn{
-    background: purple;
+    background: burlywood;
     color: rosybrown;
 }
 
@@ -26,8 +46,8 @@ CSStagn{
     color: royalblue;
 }
 
-.class{
-    font-size: 14em;
+.klasse{
+    font-size: 4em;
     color:goldenrod;  
 }
 
@@ -35,20 +55,16 @@ CSStagn{
     background: rgba(14, 230,7, 0.7);
 }
 
-CSStagn CSStagm{
+CSStagn,CSStagm{
     background: black;
 }
 
-#link, CSStagn{
-    background:palevioletred;
-}
-
-[href].CSStagm{
+[href] .CSStagm{
     background:rebeccapurple;
     color: seagreen;
 }
 
-p {
+d {
     font-family: Italianno;
 }
 
