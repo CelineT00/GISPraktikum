@@ -93,3 +93,16 @@ p::selection {
     background: black;
   }
 
+  @keyframes example {
+    from {background-color: blue;}
+    to {background-color: blueviolet;}
+  }
+  
+  .divEvent{
+    width: 100px;
+    height: 100px;
+    background-color: blue;
+    animation-name: example;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+  }
