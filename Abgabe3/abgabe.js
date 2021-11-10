@@ -23,9 +23,9 @@ function func2(name) {
     return func3();
 }
 /* -- HIER BITTE IHRE LÖSUNG ZUR AUFGABE 1 EINTRAGEN
- * 1. ' Ich heisse Celine.?
+ * 1. ' Ich heisse Celine.'
  * 2. ' Ich esse gerne Pizza.'
- * 3. ' Ich gehöre zu Generation Z'
+ * 3. ' Ich gehöre zur Generation Z'
  */
 // -- [Aufgabe 2]
 var events = [
@@ -42,8 +42,8 @@ var events = [
 ];
 // -- HIER BITTE IHRE LÖSUNG ZUR AUFGABE 2 EINTRAGEN
 // Lösung a) ...
-console.log(events.length);
-console.log(["Namen", "Preise"].length);
+var arraylength = events.length;
+console.log(arraylength);
 // Lösung b) ...
 console.log(events[0][0]);
 console.log(events[0][1]);
@@ -66,16 +66,89 @@ console.log(events[8][1]);
 console.log(events[9][0]);
 console.log(events[9][1]);
 // Lösung c) ...
-var variable = events[0][1];
-for (var i = 0; i < events.length; i++) {
-    for (var j = 0; j < events.length; j++) {
-        if (j > variable)
-            j = variable;
+function groesstenummer(liste) {
+    var groesste = 0;
+    var nummer = 0;
+    for (var i = 0; i < liste.length; i++) {
+        if (liste[i][1] > groesste) {
+            groesste = liste[i][1];
+            nummer = i;
+        }
+    }
+    console.log("Die groesste Zahl ist " + groesste);
+    return groesste;
+}
+groesstenummer(events);
+// Lösung d) ...
+function suchename(name, liste) {
+    var vorhanden;
+    var nummer = 0;
+    for (var i = 0; i < liste.length; i++) {
+        if (liste[i][0] == name) {
+            vorhanden = true;
+            nummer = i;
+            break;
+        }
+    }
+    if (vorhanden) {
+        console.log("Der Name " + name + " ist vorhanden.");
+    }
+    else {
+        console.log("Dieser Name ist nicht vorhanden.");
+    }
+    return vorhanden;
+}
+// Lösung e)
+function factorial(n) {
+    var i = 1;
+    var ergebnis = 1;
+    while (i <= n) {
+        ergebnis *= i;
+        i++;
+    }
+    console.log(ergebnis);
+}
+factorial(4);
+factorial(5);
+factorial(10);
+// Lösung f) ...
+var ergebnis = 0;
+for (var i = 0; i <= 100; i++) {
+    var wahr = false;
+    ergebnis = i / 3;
+    var zahl = String(ergebnis);
+    var zahl1 = Number(zahl[0]);
+    var zahl2 = Number(zahl[1]);
+    var zahlen = zahl1 + zahl2;
+    var ergebnisse = zahlen / zahlen;
+    if (ergebnisse == 1) {
+        wahr = true;
+    }
+    else {
+        wahr = false;
+    }
+    if (wahr == true) {
+        console.log(i);
     }
 }
-console.log(variable);
-// Lösung d) ...
-// Lösung e) ...
-// Lösung f) ...
 // Lösung g) ...
+var ConcertEvents = /** @class */ (function () {
+    function ConcertEvents(price, interpret) {
+        this.interpret = interpret;
+        this.price = price;
+    }
+    ConcertEvents.prototype.show = function () {
+        console.log("Der Preis ist " + this.price + ".");
+        console.log("Der Interpret ist " + this.interpret + ".");
+    };
+    return ConcertEvents;
+}());
 // Lösung h) ...
+var kuenstlerliste;
+for (var i = 0; i < events.length; i++) {
+    var neu = new ConcertEvents(events[i][0], events[i][1]);
+    kuenstlerliste.push(neu);
+}
+for (var i = 0; i < kuenstlerliste.length; i++) {
+    kuenstlerliste[i].show();
+}
