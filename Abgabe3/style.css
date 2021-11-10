@@ -1,0 +1,108 @@
+@media (min-width: 50em) {
+    article {
+        float: left;
+        width: 50%;
+      display: grid;
+    }
+  }
+
+nav{
+    font-family: Italianno;
+}
+
+.mainNav{
+    height: 40px;
+    background: lavender;
+    font-family: Italianno;
+    padding: 5px;
+}
+
+footer{
+    font-family: Italianno;
+}
+
+.mainFooter{
+    height: 20px;
+    background: lavender;
+    font-family: Italianno;
+    padding: 10px;
+}
+
+div.fixed{
+    position: relative;
+    bottom: 0;
+    right: 0;
+    width: 300px;
+    border: 3px solid #73AD21;
+}
+
+CSStagn{
+    background: burlywood;
+    color: rosybrown;
+}
+
+#link {
+    background: powderblue;
+    color: royalblue;
+}
+
+.klasse{
+    font-size: 4em;
+    color:goldenrod;  
+}
+
+[href]{
+    background: rgba(14, 230,7, 0.7);
+}
+
+CSStagn,CSStagm{
+    background: black;
+}
+
+[href] .CSStagm{
+    background:rebeccapurple;
+    color: seagreen;
+}
+
+d {
+    font-family: Italianno;
+}
+
+input:disabled + span::after {content: " nicht auswählbar"}
+      input:enabled + span::after {content: " auswählbar"}
+      input:checked + span::after {content: " ausgewählt"}
+      input:disabled { outline: 2px solid darkred;}
+      input:checked  { outline: 2px solid lightgreen; }
+
+a:hover {
+     background-color: lavender;     
+    }
+
+.exciting-text::after {
+    content: "Interesting things!";
+        color: plum;
+    }
+
+q::before {
+    content: "*";
+    color: blue;
+    }
+
+p::selection {
+    color: white;
+    background: black;
+  }
+
+  @keyframes example {
+    from {background-color: blue;}
+    to {background-color: blueviolet;}
+  }
+  
+  .divEvent{
+    width: 100px;
+    height: 100px;
+    background-color: blue;
+    animation-name: example;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+  }
