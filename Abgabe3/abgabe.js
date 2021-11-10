@@ -45,26 +45,11 @@ var events = [
 var arraylength = events.length;
 console.log(arraylength);
 // Lösung b) ...
-console.log(events[0][0]);
-console.log(events[0][1]);
-console.log(events[1][0]);
-console.log(events[1][1]);
-console.log(events[2][0]);
-console.log(events[2][1]);
-console.log(events[3][0]);
-console.log(events[3][1]);
-console.log(events[4][0]);
-console.log(events[4][1]);
-console.log(events[5][0]);
-console.log(events[5][1]);
-console.log(events[6][0]);
-console.log(events[6][1]);
-console.log(events[7][0]);
-console.log(events[7][1]);
-console.log(events[8][0]);
-console.log(events[8][1]);
-console.log(events[9][0]);
-console.log(events[9][1]);
+for (var i = 0; i < events.length; i++) {
+    console.log(events[i][0]);
+    console.log(events[i][1]);
+    console.log("_____________________");
+}
 // Lösung c) ...
 function groesstenummer(liste) {
     var groesste = 0;
@@ -112,22 +97,9 @@ factorial(4);
 factorial(5);
 factorial(10);
 // Lösung f) ...
-var ergebnis = 0;
-for (var i = 0; i <= 100; i++) {
+for (var i = 1; i <= 100; i++) {
     var wahr = false;
-    ergebnis = i / 3;
-    var zahl = String(ergebnis);
-    var zahl1 = Number(zahl[0]);
-    var zahl2 = Number(zahl[1]);
-    var zahlen = zahl1 + zahl2;
-    var ergebnisse = zahlen / zahlen;
-    if (ergebnisse == 1) {
-        wahr = true;
-    }
-    else {
-        wahr = false;
-    }
-    if (wahr == true) {
+    if (i % 3 == 0) {
         console.log(i);
     }
 }
@@ -144,9 +116,9 @@ var ConcertEvents = /** @class */ (function () {
     return ConcertEvents;
 }());
 // Lösung h) ...
-var kuenstlerliste;
+var kuenstlerliste = [];
 for (var i = 0; i < events.length; i++) {
-    var neu = new ConcertEvents(events[i][0], events[i][1]);
+    var neu = new ConcertEvents(events[i][1], events[i][0]);
     kuenstlerliste.push(neu);
 }
 for (var i = 0; i < kuenstlerliste.length; i++) {

@@ -58,26 +58,12 @@ let arraylength: number = events.length;
  console.log(arraylength);
  
  // Lösung b) ...
- console.log(events[0][0]);
- console.log(events[0][1]);
- console.log(events[1][0]);
- console.log(events[1][1]);
- console.log(events[2][0]);
- console.log(events[2][1]);
- console.log(events[3][0]);
- console.log(events[3][1]);
- console.log(events[4][0]);
- console.log(events[4][1]);
- console.log(events[5][0]);
- console.log(events[5][1]);
- console.log(events[6][0]);
- console.log(events[6][1]);
- console.log(events[7][0]);
- console.log(events[7][1]);
- console.log(events[8][0]);
- console.log(events[8][1]);
- console.log(events[9][0]);
- console.log(events[9][1]);
+ for (let i: number = 0; i < events.length; i++) {
+  console.log(events[i][0]);
+  console.log(events[i][1]);
+  console.log("_____________________");
+ 
+}
 
  // Lösung c) ...
  function groesstenummer (liste: number [][]): number {
@@ -128,23 +114,12 @@ factorial(5);
 factorial(10);
 
  // Lösung f) ...
-let ergebnis: number = 0;
-for (let i: number = 0; i <= 100; i++) {
+for (let i: number = 1; i <= 100; i++) {
   let wahr: boolean = false;
-  ergebnis = i / 3;
-  let zahl: string = String(ergebnis);
-  let zahl1: number = Number(zahl[0]);
-  let zahl2: number = Number(zahl[1]);
-  let zahlen: number = zahl1 + zahl2;
-  let ergebnisse: number = zahlen / zahlen;   
-  if (ergebnisse == 1 ) {
-    wahr = true;
-  } else {
-    wahr = false;
-  }
-  if (wahr == true) {
+  if(i % 3  == 0){
     console.log(i);
   }
+
 }
 
  // Lösung g) ...
@@ -163,9 +138,9 @@ for (let i: number = 0; i <= 100; i++) {
 }
 
  // Lösung h) ...
-let kuenstlerliste: ConcertEvents[];
+let kuenstlerliste: ConcertEvents[] = [];
 for (let i: number = 0; i < events.length; i++) {
-  let neu: ConcertEvents = new ConcertEvents(events[i][0], events[i][1]) ;
+  let neu: ConcertEvents = new ConcertEvents(events[i][1], events[i][0]) ;
   kuenstlerliste.push(neu);
 }
 for (
