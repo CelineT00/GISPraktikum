@@ -23,30 +23,31 @@
         </nav>
    </header>
    <main>
-    <p></p>
-    <p></p>
-    <p></p>
-    <div class = divEvent></div>
-    <p></p>
-    <p></p>
-      <input id= "input-date" type="text" name="date" placeholder="Datum" />
-      <input id= "input-price" type="number" name="price" placeholder="Preis" />
-      <input id= "input-city" type="text" name="city" placeholder="Stadt" />
-      <input id= "input-interpret" type="text" name="interpret" placeholder="Interpret" />
-      <button id="mache-etwas">Inputs eintragen</button>
-      <div id = "display">
-        <h2>Termine der Künstler</h2>
-        <table id = "my-table">
-          <tr>
-            <th>Datum</th>
+  <div>
+      <h3>Neues Event:</h3>
+      <p> Interpret
+      <input id= "interpret" type ="text" name="interpretinput"/>
+      </p>
+      <p>
+      Preis
+      <input id = "preis" type ="number" name="preisinput"/>
+      </p>
+      <p>Zeit
+      <input id = "zeit" type ="datetime-local" name="zeitinput"/>
+      </p>
+      <button id="enter" type="button">Event eintragen</button>
+  </div>
+  <div>
+    <table class = "table" >
+        <tbody id = "table">
+            <th>Interpret</th>
             <th>Preis</th>
-            <th>Stadt</th>
-            <th>Künstler</th>
-          </tr>
-        </table>
-      </div>
-    <p></p>
-    <p></p>
+            <th>Datum & Uhrzeit</th>
+            <th>Löschen</th>
+        </tbody>
+        
+    </table>
+</div>
    </main> 
    <footer class = mainFooter>
     Impressum

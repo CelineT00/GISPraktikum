@@ -106,3 +106,23 @@ p::selection {
     animation-duration: 4s;
     animation-iteration-count: infinite;
   }
+
+  div {
+    width: 300px;
+    border: 15px solid rgb(158, 30, 184);
+    margin: 20px;
+  }
+
+  td,th{
+    position: static;
+    font-size: small;
+    color: #ccc;
+    background-color: rgb(70, 9, 87);
+    width: 4000px;
+    height: 100px;
+  }
+
+  tr td{
+    background-color: rgb(200, 86, 204);
+    color: rgb(20, 19, 20);
+  }

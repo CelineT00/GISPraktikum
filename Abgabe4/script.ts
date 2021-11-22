@@ -1,3 +1,41 @@
+namespace Aufgabe {
+    let interpret: HTMLInputElement = <HTMLInputElement> document.getElementById("interpret") as HTMLInputElement;
+    let preis: HTMLInputElement = <HTMLInputElement> document.getElementById("preis") as HTMLInputElement;
+    let datum: HTMLInputElement = <HTMLInputElement> document.getElementById("zeit") as HTMLInputElement;
+    let button: HTMLElement = document.getElementById("enter");
+    
+    
+    console.log(interpret);
+
+    button.addEventListener("click", () => { 
+            let liste: HTMLElement = document.createElement("tr");
+            let a: HTMLElement = document.createElement("td");
+            let b: HTMLElement = document.createElement("td");
+            let c: HTMLElement = document.createElement("td");
+            let d: HTMLElement = document.createElement("td");
+            let deletebutton: HTMLElement = document.createElement("button");
+            deletebutton.innerText = "delete";
+            document.getElementById("table").appendChild(liste);
+            a.innerText = interpret.value;
+            b.innerText = preis.value;
+            c.innerText = datum.value;
+            d.appendChild(deletebutton);
+            liste.appendChild(a);
+            liste.appendChild(b);
+            liste.appendChild(c);
+            liste.appendChild(d);
+            deletebutton.addEventListener("click", deleter);
+
+            function deleter (): void {
+            document.getElementById("table").removeChild(liste);
+            
+        }
+       
+    });
+    
+}
+
+/*
 namespace testEventspace{
 
     const inputDate: HTMLInputElement = <HTMLInputElement>document.getElementById("input-date");
@@ -22,7 +60,7 @@ namespace testEventspace{
         var newCell1 = newRow.insertCell(1);
         var newCell2 = newRow.insertCell(2);
         var newCell3 = newRow.insertCell(3);
-        newCell0.innerHTML = 'banae';
+        newCell0.innerHTML = interpretDate : string;
         newCell1.innerHTML = 'newText';
         newCell2.innerHTML = 'ns';
         newCell3.innerHTML = 'newText';
@@ -34,9 +72,10 @@ namespace testEventspace{
         let interpretCity: string = inputCity.value;
         let interpretValue: string = inputInterpret.value;
 
-        let newElement = document.createElement("div");
+        let newElement = addRow;
         
         display.appendChild(newElement);
     }
 
 }
+*/
