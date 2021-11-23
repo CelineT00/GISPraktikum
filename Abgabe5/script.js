@@ -4,7 +4,6 @@ var Aufgabe;
     var preis = document.getElementById("preis");
     var datum = document.getElementById("zeit");
     var button = document.getElementById("enter");
-    console.log(interpret);
     button.addEventListener("click", function () {
         var liste = document.createElement("tr");
         var a = document.createElement("td");

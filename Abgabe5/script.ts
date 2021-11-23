@@ -3,9 +3,6 @@ namespace Aufgabe {
     let preis: HTMLInputElement = <HTMLInputElement> document.getElementById("preis") as HTMLInputElement;
     let datum: HTMLInputElement = <HTMLInputElement> document.getElementById("zeit") as HTMLInputElement;
     let button: HTMLElement = document.getElementById("enter");
-    
-    
-    console.log(interpret);
 
     button.addEventListener("click", () => { 
             let liste: HTMLElement = document.createElement("tr");
