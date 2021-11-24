@@ -1,14 +1,14 @@
 namespace Aufgabe {
 
     class Events {
-        person: string;
-        preis: string;
-        datum: string;
+        interpreten: string;
+        preise: string;
+        daten: string;
 
-        constructor (person: string, preis: string, datum: string) {
-            this.person = person;
-            this.preis = preis;
-            this.datum = datum;
+        constructor (interpreten: string, preise: string, datum: string) {
+            this.interpreten = interpreten;
+            this.preise = preise;
+            this.daten = datum;
         }
         
     }
@@ -31,7 +31,6 @@ namespace Aufgabe {
     localStorage.setItem("myArray", stringarray);
 
     function update(): void {
-        if (localstoragearray != null && localstoragearray.length > 0) {
             for (let index: number = 0; index < localstoragearray.length; index++) {
         
                 let liste: HTMLElement = document.createElement("tr");
@@ -49,9 +48,9 @@ namespace Aufgabe {
 
 
                 document.getElementById("table").appendChild(liste);
-                a.innerText = localstoragearray[index].person;
-                b.innerText = localstoragearray[index].preis;
-                c.innerText = localstoragearray[index].datum;
+                a.innerText = localstoragearray[index].interpreten;
+                b.innerText = localstoragearray[index].preise;
+                c.innerText = localstoragearray[index].daten;
                 d.appendChild(deletebutton);
                 liste.appendChild(a);
                 liste.appendChild(b);
@@ -59,11 +58,8 @@ namespace Aufgabe {
                 liste.appendChild(d);
 
             }
-        }
     }
     function aktualisierenListe(): void {
-        if (arrayevents.length > 0 && arrayevents != null) {
-                            
             while (document.getElementById("table").lastChild != document.getElementById("wichtig")) {
                 document.getElementById("table").removeChild( document.getElementById("table").lastChild);
                 }
@@ -83,16 +79,14 @@ namespace Aufgabe {
                 }
 
                 document.getElementById("table").appendChild(zeile);
-                a1.innerText = arrayevents[index].person;
-                b1.innerText = arrayevents[index].preis;
-                c1.innerText = arrayevents[index].datum;
+                a1.innerText = arrayevents[index].interpreten;
+                b1.innerText = arrayevents[index].preise;
+                c1.innerText = arrayevents[index].daten;
                 d1.appendChild(deletebutton);
                 zeile.appendChild(a1);
                 zeile.appendChild(b1);
                 zeile.appendChild(c1);
-                zeile.appendChild(d1);
-            }
-            
+                zeile.appendChild(d1);    
         }
     }
     button.addEventListener("click", () => { 
