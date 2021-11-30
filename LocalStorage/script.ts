@@ -9,21 +9,23 @@ namespace Aufgabe {
         person: string;
         preis: string;
         datum: string;
-        nummer: number;
-        constructor (person: string, preis: string, datum: string, nummer: number) {
+        id: number;
+        constructor (person: string, preis: string, datum: string, id: number) {
             this.person = person;
             this.preis = preis;
             this.datum = datum;
-            this.nummer = nummer;
+            this.id = id;
         }
         returnID (): string {
-            return this.nummer.toString();
-        }   
+            return this.id.toString();
+        }
+
+        
     }
 
     let eventlist: Events[] = [];
-    class Eventstoring {
-        static eventsaving(): void {
+    class EventStorage {
+        static eventsaves(): void {
             let stringEventListe: string = JSON.stringify(eventlist);
             localStorage.setItem("EventArray", stringEventListe);
         }
@@ -33,7 +35,7 @@ namespace Aufgabe {
                 table.removeChild(table.lastChild);
                 }
 
-            for (let event of JSON.parse(storageStringListe)) {
+            for (let evt of JSON.parse(storageStringListe)) {
                 let zaehler: number = 0;
                 let liste: HTMLElement = document.createElement("tr");
                 let a: HTMLElement = document.createElement("td");
@@ -52,29 +54,67 @@ namespace Aufgabe {
                             eventlist.splice(index, 1);
                         }
                     });
-                    Eventstoring.eventsaving();
+                    EventStorage.eventsaves();
                     table.removeChild(liste);
                 }
+
                 document.getElementById("table").appendChild(liste);
-                a.innerText = event.person;
-                b.innerText = event.preis;
-                c.innerText = event.datum;
+                a.innerText = evt.person;
+                b.innerText = evt.preis;
+                c.innerText = evt.datum;
                 d.appendChild(deletebutton);
                 liste.appendChild(a);
                 liste.appendChild(b);
                 liste.appendChild(c);
                 liste.appendChild(d);
+
                 zaehler++;
+
             }
         }
     }
-    Eventstoring.eventloading();
+    EventStorage.eventloading();
 
     button.addEventListener("click", () => { 
             let neuEvent: Events = new Events(interpret.value, preis.value, datum.value, eventlist.length);
             eventlist.push(neuEvent);
-           Eventstoring.eventsaving();
-           Eventstoring.eventloading();      
+           EventStorage.eventsaves();
+           EventStorage.eventloading();
+       
     });
     
 }
+/*
+ let interpret: HTMLInputElement = <HTMLInputElement> document.getElementById("interpret") as HTMLInputElement;
+    let preis: HTMLInputElement = <HTMLInputElement> document.getElementById("preis") as HTMLInputElement;
+    let datum: HTMLInputElement = <HTMLInputElement> document.getElementById("zeit") as HTMLInputElement;
+    let button: HTMLElement = document.getElementById("enter");
+    
+    
+    console.log(interpret);
+
+    button.addEventListener("click", () => { 
+            let liste: HTMLElement = document.createElement("tr");
+            let a: HTMLElement = document.createElement("td");
+            let b: HTMLElement = document.createElement("td");
+            let c: HTMLElement = document.createElement("td");
+            let d: HTMLElement = document.createElement("td");
+            let deletebutton: HTMLElement = document.createElement("button");
+            deletebutton.innerText = "delete";
+            document.getElementById("table").appendChild(liste);
+            a.innerText = interpret.value;
+            b.innerText = preis.value;
+            c.innerText = datum.value;
+            d.appendChild(deletebutton);
+            liste.appendChild(a);
+            liste.appendChild(b);
+            liste.appendChild(c);
+            liste.appendChild(d);
+            deletebutton.addEventListener("click", deleter);
+
+            function deleter (): void {
+            document.getElementById("table").removeChild(liste);
+            
+        }
+       
+    }); */

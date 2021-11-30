@@ -1,89 +1,79 @@
 var Aufgabe;
 (function (Aufgabe) {
-    var Events = /** @class */ (function () {
-        function Events(interpreten, preise, datum) {
-            this.interpreten = interpreten;
-            this.preise = preise;
-            this.daten = datum;
-        }
-        return Events;
-    }());
     var interpret = document.getElementById("interpret");
     var preis = document.getElementById("preis");
     var datum = document.getElementById("zeit");
     var button = document.getElementById("enter");
-    var standartevent = new Events("Twice", "44.2", "17.05.2022");
-    var arrayevents = [];
-    arrayevents.push(standartevent);
-    var localstoragearray;
-    var localstoragestring = localStorage.getItem("myArray");
-    localstoragearray = JSON.parse(localstoragestring);
-    update();
-    aktualisierenListe();
-    var stringarray = JSON.stringify(arrayevents);
-    localStorage.setItem("myArray", stringarray);
-    function update() {
-        var _loop_1 = function (index) {
-            var liste = document.createElement("tr");
-            var a = document.createElement("td");
-            var b = document.createElement("td");
-            var c = document.createElement("td");
-            var d = document.createElement("td");
-            var deletebutton = document.createElement("button");
-            deletebutton.innerText = "delete";
-            deletebutton.addEventListener("click", deleter);
-            function deleter() {
-                document.getElementById("table").removeChild(liste);
-            }
-            document.getElementById("table").appendChild(liste);
-            a.innerText = localstoragearray[index].interpreten;
-            b.innerText = localstoragearray[index].preise;
-            c.innerText = localstoragearray[index].daten;
-            d.appendChild(deletebutton);
-            liste.appendChild(a);
-            liste.appendChild(b);
-            liste.appendChild(c);
-            liste.appendChild(d);
+    var table = document.getElementById("table");
+    var Events = /** @class */ (function () {
+        function Events(person, preis, datum, nummer) {
+            this.person = person;
+            this.preis = preis;
+            this.datum = datum;
+            this.nummer = nummer;
+        }
+        Events.prototype.returnID = function () {
+            return this.nummer.toString();
         };
-        for (var index = 0; index < localstoragearray.length; index++) {
-            _loop_1(index);
+        return Events;
+    }());
+    var eventlist = [];
+    var Eventstoring = /** @class */ (function () {
+        function Eventstoring() {
         }
-    }
-    function aktualisierenListe() {
-        while (document.getElementById("table").lastChild != document.getElementById("wichtig")) {
-            document.getElementById("table").removeChild(document.getElementById("table").lastChild);
-        }
-        var _loop_2 = function (index) {
-            var zeile = document.createElement("tr");
-            var a1 = document.createElement("td");
-            var b1 = document.createElement("td");
-            var c1 = document.createElement("td");
-            var d1 = document.createElement("td");
-            var deletebutton = document.createElement("button");
-            deletebutton.innerText = "delete";
-            deletebutton.addEventListener("click", deleter);
-            function deleter() {
-                document.getElementById("table").removeChild(zeile);
-            }
-            document.getElementById("table").appendChild(zeile);
-            a1.innerText = arrayevents[index].interpreten;
-            b1.innerText = arrayevents[index].preise;
-            c1.innerText = arrayevents[index].daten;
-            d1.appendChild(deletebutton);
-            zeile.appendChild(a1);
-            zeile.appendChild(b1);
-            zeile.appendChild(c1);
-            zeile.appendChild(d1);
+        Eventstoring.eventsaving = function () {
+            var stringEventListe = JSON.stringify(eventlist);
+            localStorage.setItem("EventArray", stringEventListe);
         };
-        for (var index = 0; index < arrayevents.length; index++) {
-            _loop_2(index);
-        }
-    }
+        Eventstoring.eventloading = function () {
+            var storageStringListe = localStorage.getItem("EventArray") || "[]";
+            while (table.lastChild != document.getElementById("wichtig")) {
+                table.removeChild(table.lastChild);
+            }
+            var _loop_1 = function (event_1) {
+                var zaehler = 0;
+                var liste = document.createElement("tr");
+                var a = document.createElement("td");
+                var b = document.createElement("td");
+                var c = document.createElement("td");
+                var d = document.createElement("td");
+                var deletebutton = document.createElement("button");
+                deletebutton.innerText = "delete";
+                var buttonid = zaehler.toString();
+                deletebutton.id = buttonid;
+                deletebutton.addEventListener("click", deleter);
+                function deleter() {
+                    eventlist.forEach(function (event, index) {
+                        if (event.returnID() == deletebutton.id) {
+                            eventlist.splice(index, 1);
+                        }
+                    });
+                    Eventstoring.eventsaving();
+                    table.removeChild(liste);
+                }
+                document.getElementById("table").appendChild(liste);
+                a.innerText = event_1.person;
+                b.innerText = event_1.preis;
+                c.innerText = event_1.datum;
+                d.appendChild(deletebutton);
+                liste.appendChild(a);
+                liste.appendChild(b);
+                liste.appendChild(c);
+                liste.appendChild(d);
+                zaehler++;
+            };
+            for (var _i = 0, _a = JSON.parse(storageStringListe); _i < _a.length; _i++) {
+                var event_1 = _a[_i];
+                _loop_1(event_1);
+            }
+        };
+        return Eventstoring;
+    }());
+    Eventstoring.eventloading();
     button.addEventListener("click", function () {
-        var neuEvent = new Events(interpret.value, preis.value, datum.value);
-        arrayevents.push(neuEvent);
-        aktualisierenListe();
-        stringarray = JSON.stringify(arrayevents);
-        localStorage.setItem("myArray", stringarray);
+        var neuEvent = new Events(interpret.value, preis.value, datum.value, eventlist.length);
+        eventlist.push(neuEvent);
+        Eventstoring.eventsaving();
+        Eventstoring.eventloading();
     });
 })(Aufgabe || (Aufgabe = {}));
