@@ -22,6 +22,7 @@ namespace Aufgabe {
     }
 
     let eventlist: Events[] = [];
+
     class Eventstoring {
         static eventsaving(): void {
             let stringEventListe: string = JSON.stringify(eventlist);
@@ -34,7 +35,6 @@ namespace Aufgabe {
                 }
 
             for (let event of JSON.parse(storageStringListe)) {
-                let zaehler: number = 0;
                 let liste: HTMLElement = document.createElement("tr");
                 let a: HTMLElement = document.createElement("td");
                 let b: HTMLElement = document.createElement("td");
@@ -42,18 +42,17 @@ namespace Aufgabe {
                 let d: HTMLElement = document.createElement("td");
                 let deletebutton: HTMLElement = document.createElement("button");
                 deletebutton.innerText = "delete";
-                let buttonid: string = zaehler.toString();
+                let buttonid: string = event.nummer.toString();
                 deletebutton.id = buttonid;
                 deletebutton.addEventListener("click", deleter);
 
                 function deleter (): void {
-                    eventlist.forEach((event, index) => {
-                        if (event.returnID() == deletebutton.id) {
-                            eventlist.splice(index, 1);
-                        }
-                    });
+                    let idbutt: number = parseInt(deletebutton.id);
+                    eventlist = eventlist.filter(item => item.nummer !== idbutt);
+                    localStorage.clear();
                     Eventstoring.eventsaving();
                     table.removeChild(liste);
+                   
                 }
                 document.getElementById("table").appendChild(liste);
                 a.innerText = event.person;
@@ -64,17 +63,34 @@ namespace Aufgabe {
                 liste.appendChild(b);
                 liste.appendChild(c);
                 liste.appendChild(d);
-                zaehler++;
             }
         }
     }
     Eventstoring.eventloading();
 
     button.addEventListener("click", () => { 
-            let neuEvent: Events = new Events(interpret.value, preis.value, datum.value, eventlist.length);
-            eventlist.push(neuEvent);
-           Eventstoring.eventsaving();
-           Eventstoring.eventloading();      
+        if (interpret.value != "" && preis.value != "" && datum.value != "") {
+            eventlist.length = 0;
+            if (eventlist === null || eventlist.length < 1) {
+               eventlist = JSON.parse(localStorage.getItem("EventArray"));
+               
+               if (eventlist === null || eventlist.length < 1) {
+                    let neuEvent: Events = new Events(interpret.value, preis.value, datum.value, 0);
+                    eventlist = [];
+                    eventlist[0] = neuEvent;
+                    
+               } 
+               else {
+                let neuEvent: Events = new Events(interpret.value, preis.value, datum.value, (eventlist[eventlist.length - 1].nummer + 1));
+                eventlist.push(neuEvent);
+               }
+            }else {
+                let neuEvent: Events = new Events(interpret.value, preis.value, datum.value, (eventlist[eventlist.length - 1].nummer + 1));
+                eventlist.push(neuEvent);
+            }
+            Eventstoring.eventsaving();
+            Eventstoring.eventloading(); 
+        }
     });
     
-}
+}    

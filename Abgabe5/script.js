@@ -1,79 +1,90 @@
+"use strict";
 var Aufgabe;
 (function (Aufgabe) {
-    var interpret = document.getElementById("interpret");
-    var preis = document.getElementById("preis");
-    var datum = document.getElementById("zeit");
-    var button = document.getElementById("enter");
-    var table = document.getElementById("table");
-    var Events = /** @class */ (function () {
-        function Events(person, preis, datum, nummer) {
+    let interpret = document.getElementById("interpret");
+    let preis = document.getElementById("preis");
+    let datum = document.getElementById("zeit");
+    let button = document.getElementById("enter");
+    let table = document.getElementById("table");
+    class Events {
+        person;
+        preis;
+        datum;
+        nummer;
+        constructor(person, preis, datum, nummer) {
             this.person = person;
             this.preis = preis;
             this.datum = datum;
             this.nummer = nummer;
         }
-        Events.prototype.returnID = function () {
+        returnID() {
             return this.nummer.toString();
-        };
-        return Events;
-    }());
-    var eventlist = [];
-    var Eventstoring = /** @class */ (function () {
-        function Eventstoring() {
         }
-        Eventstoring.eventsaving = function () {
-            var stringEventListe = JSON.stringify(eventlist);
+    }
+    let eventlist = [];
+    class Eventstoring {
+        static eventsaving() {
+            let stringEventListe = JSON.stringify(eventlist);
             localStorage.setItem("EventArray", stringEventListe);
-        };
-        Eventstoring.eventloading = function () {
-            var storageStringListe = localStorage.getItem("EventArray") || "[]";
+        }
+        static eventloading() {
+            let storageStringListe = localStorage.getItem("EventArray") || "[]";
             while (table.lastChild != document.getElementById("wichtig")) {
                 table.removeChild(table.lastChild);
             }
-            var _loop_1 = function (event_1) {
-                var zaehler = 0;
-                var liste = document.createElement("tr");
-                var a = document.createElement("td");
-                var b = document.createElement("td");
-                var c = document.createElement("td");
-                var d = document.createElement("td");
-                var deletebutton = document.createElement("button");
+            for (let event of JSON.parse(storageStringListe)) {
+                let liste = document.createElement("tr");
+                let a = document.createElement("td");
+                let b = document.createElement("td");
+                let c = document.createElement("td");
+                let d = document.createElement("td");
+                let deletebutton = document.createElement("button");
                 deletebutton.innerText = "delete";
-                var buttonid = zaehler.toString();
+                let buttonid = event.nummer.toString();
                 deletebutton.id = buttonid;
                 deletebutton.addEventListener("click", deleter);
                 function deleter() {
-                    eventlist.forEach(function (event, index) {
-                        if (event.returnID() == deletebutton.id) {
-                            eventlist.splice(index, 1);
-                        }
-                    });
+                    let idbutt = parseInt(deletebutton.id);
+                    eventlist = eventlist.filter(item => item.nummer !== idbutt);
+                    localStorage.clear();
                     Eventstoring.eventsaving();
                     table.removeChild(liste);
                 }
                 document.getElementById("table").appendChild(liste);
-                a.innerText = event_1.person;
-                b.innerText = event_1.preis;
-                c.innerText = event_1.datum;
+                a.innerText = event.person;
+                b.innerText = event.preis;
+                c.innerText = event.datum;
                 d.appendChild(deletebutton);
                 liste.appendChild(a);
                 liste.appendChild(b);
                 liste.appendChild(c);
                 liste.appendChild(d);
-                zaehler++;
-            };
-            for (var _i = 0, _a = JSON.parse(storageStringListe); _i < _a.length; _i++) {
-                var event_1 = _a[_i];
-                _loop_1(event_1);
             }
-        };
-        return Eventstoring;
-    }());
+        }
+    }
     Eventstoring.eventloading();
-    button.addEventListener("click", function () {
-        var neuEvent = new Events(interpret.value, preis.value, datum.value, eventlist.length);
-        eventlist.push(neuEvent);
-        Eventstoring.eventsaving();
-        Eventstoring.eventloading();
+    button.addEventListener("click", () => {
+        if (interpret.value != "" && preis.value != "" && datum.value != "") {
+            eventlist.length = 0;
+            if (eventlist === null || eventlist.length < 1) {
+                eventlist = JSON.parse(localStorage.getItem("EventArray"));
+                if (eventlist === null || eventlist.length < 1) {
+                    let neuEvent = new Events(interpret.value, preis.value, datum.value, 0);
+                    eventlist = [];
+                    eventlist[0] = neuEvent;
+                }
+                else {
+                    let neuEvent = new Events(interpret.value, preis.value, datum.value, (eventlist[eventlist.length - 1].nummer + 1));
+                    eventlist.push(neuEvent);
+                }
+            }
+            else {
+                let neuEvent = new Events(interpret.value, preis.value, datum.value, (eventlist[eventlist.length - 1].nummer + 1));
+                eventlist.push(neuEvent);
+            }
+            Eventstoring.eventsaving();
+            Eventstoring.eventloading();
+        }
     });
 })(Aufgabe || (Aufgabe = {}));
+//# sourceMappingURL=script.js.map
