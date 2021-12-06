@@ -33,6 +33,9 @@ namespace Aufgabe {
             while (table.lastChild != document.getElementById("wichtig")) {
                 table.removeChild(table.lastChild);
                 }
+            
+            //Verbesserung
+            eventlist = JSON.parse(storageStringListe);
 
             for (let event of JSON.parse(storageStringListe)) {
                 let liste: HTMLElement = document.createElement("tr");
