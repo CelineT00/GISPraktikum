@@ -8,13 +8,15 @@ const server = http.createServer((request, response) => {
     response.setHeader("Content-Type", "text/plain");
     response.setHeader("Access-Control-Allow-Origin", "*");
     let url = new URL(request.url || "", `http://${request.headers.host}`);
+    let datum = url.searchParams.get("datum");
+    let date = new Date(datum);
     switch (url.pathname) {
         case "/":
             response.write("Server läuft");
             break;
         case "/convertDate":
             let datum = url.searchParams.get("datum");
-            console.log(datum);
+            console.log(date);
             response.write("Hier ist das Datum " + datum + ", schoener Tag heute.");
             break;
         default:

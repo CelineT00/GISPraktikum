@@ -12,7 +12,9 @@ import * as http from "http";
           response.setHeader("Access-Control-Allow-Origin", "*"); 
           
           let url: URL = new URL(request.url || "", `http://${request.headers.host}`);
-  
+          
+          let datum: string = url.searchParams.get("datum");
+          let date: Date = new Date(datum);
         
         switch (url.pathname) {
           case "/": 
@@ -20,7 +22,7 @@ import * as http from "http";
             break;
           case "/convertDate":
             let datum: string = url.searchParams.get("datum");
-            console.log(datum);
+            console.log(date);
             response.write("Hier ist das Datum " + datum + ", schoener Tag heute."); 
             break;
           default:
@@ -29,6 +31,7 @@ import * as http from "http";
         response.end(); 
       }
     );
+    
 
     server.listen(port, hostname, () => {
       console.log(`Server running at http://${hostname}:${port}`); 
