@@ -26,6 +26,7 @@
   <div>
       <h3>Neues Event:</h3>
       <p> Interpret
+      <input id="_id" class="hide" name="_id" type="text" />
       <input id= "interpret" type ="text" name="interpretinput"/>
       </p>
       <p>
@@ -33,7 +34,7 @@
       <input id = "preis" type ="number" name="preisinput"/>
       </p>
       <p>Zeit
-      <input id = "zeit" type ="datetime-local" name="zeitinput"/>
+      <input id = "datum" type ="datetime-local" name="dateinput"/>
       </p>
       <button id="enter" type="button">Event eintragen</button>
   </div>
@@ -43,10 +44,11 @@
             <th>Interpret</th>
             <th>Preis</th>
             <th>Datum & Uhrzeit</th>
-            <th>Löschen</th>
-        </tbody>
-        
+        </tbody>   
     </table>
+    <form id="form">
+        
+    </form>
 </div>
    </main> 
    <footer class = mainFooter>

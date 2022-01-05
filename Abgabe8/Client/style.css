@@ -126,3 +126,7 @@ p::selection {
     background-color: rgb(200, 86, 204);
     color: rgb(20, 19, 20);
   }
+
+  .hide {
+    display: none;
+  }
