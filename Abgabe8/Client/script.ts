@@ -1,8 +1,7 @@
-import * as mongo from "mongodb"; 
 
-namespace Aufgabe {
-    const url: string = "127.0.0.1"; // localhost
-   const path: string = "/concertEvents";   
+  const url: string = "127.0.0.1"; //url
+  const path: string = "/concertEvents";   
+namespace Client {
 
    let interpret: HTMLInputElement = <HTMLInputElement> document.getElementById("interpret") as HTMLInputElement;
    let preis: HTMLInputElement = <HTMLInputElement> document.getElementById("preis") as HTMLInputElement;

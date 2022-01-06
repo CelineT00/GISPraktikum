@@ -1,6 +1,7 @@
 import * as http from "http";
 import * as mongo from "mongodb";
-
+namespace Server{
+  
     const hostname: string = "127.0.0.1"; 
     const port: number = 3000;
   
@@ -22,6 +23,7 @@ import * as mongo from "mongodb";
         console.log(result, requestObject); // bei Fehlern zum Testen
         response.setHeader("Content-Type", "application/json");
         response.write(JSON.stringify(result));
+        
       }
 
       async function dbAdd(
@@ -58,7 +60,6 @@ import * as mongo from "mongodb";
         
           response.statusCode = 200;
     
-          response.setHeader("Content-Type", "text/plain");
           response.setHeader("Access-Control-Allow-Origin", "*"); 
           
           let url: URL = new URL(request.url || "", `http://${request.headers.host}`);
@@ -68,20 +69,28 @@ import * as mongo from "mongodb";
           case "/": 
             response.write("Server läuft");
             break;
+            case "/concerts": {
+              switch (request.method) {
+                case "GET":
+                  await dbFind("event", "concert", {}, response);
+                  break;
+              }
+            }
           case "/concertEvents":{
+            await mongoClient.connect();
             switch (request.method) {
                 case "GET":
                   await dbFind(
-                    "event",
-                    "concert",
+                    "events",
+                    "concerts",
                     {
-                      _id: new mongo.ObjectId(url.searchParams.get("_id")), // von String zu Zahl konvertieren
+                      concerts: url.searchParams.get("concerts")
                     },
                     response
                   );
                   break;
                 case "POST":
-                  await dbAdd("event", "concert", request);
+                  await dbAdd("events", "concerts", request);
                   break;
               }
               break;
@@ -97,3 +106,4 @@ import * as mongo from "mongodb";
     server.listen(port, hostname, () => {
       console.log(`Server running at http://${hostname}:${port}`); 
     });
+  }
