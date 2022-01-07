@@ -1,6 +1,7 @@
 
   const url: string = "127.0.0.1"; //url
-  const path: string = "/concertEvents";   
+  const path: string = "/concertEvents"; 
+    
 namespace Client {
 
    let interpret: HTMLInputElement = <HTMLInputElement> document.getElementById("interpret") as HTMLInputElement;
