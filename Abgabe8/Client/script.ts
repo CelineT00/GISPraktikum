@@ -3,6 +3,8 @@
   const path: string = "/concertEvents"; 
     
 namespace Client {
+  
+  displayEvents(document.getElementById("table")as HTMLTableElement);
 
    let interpret: HTMLInputElement = <HTMLInputElement> document.getElementById("interpret") as HTMLInputElement;
    let preis: HTMLInputElement = <HTMLInputElement> document.getElementById("preis") as HTMLInputElement;
@@ -44,7 +46,7 @@ namespace Client {
 
       async function requestConcerts(): Promise<Concerts[]> {
         let response: Response = await fetch(
-          `http://localhost:3000/concertEvents?concerts`
+          `http://localhost:3000/concertEvents`
           );
         let text: string = await response.text();
         return JSON.parse(text) as Concerts[];

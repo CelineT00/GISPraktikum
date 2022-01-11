@@ -1,6 +1,5 @@
 import * as http from "http";
 import * as mongo from "mongodb";
-namespace Server{
   
     const hostname: string = "127.0.0.1"; 
     const port: number = 3000;
@@ -106,4 +105,3 @@ namespace Server{
     server.listen(port, hostname, () => {
       console.log(`Server running at http://${hostname}:${port}`); 
     });
-  }

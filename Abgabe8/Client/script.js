@@ -1,14 +1,15 @@
 "use strict";
+const url = "127.0.0.1"; //url
+const path = "/concertEvents";
 var Client;
 (function (Client) {
-    const url = "http://127.0.0.1:3000"; //url
-    const path = "/concertEvents";
+    displayEvents(document.getElementById("table"));
     let interpret = document.getElementById("interpret");
     let preis = document.getElementById("preis");
     let datum = document.getElementById("datum");
     let button = document.getElementById("enter");
     async function sendJSONStringWithPOST(url, jsonString) {
-        let response = await fetch(url, {
+        await fetch(url, {
             method: "post",
             body: jsonString,
         });
@@ -22,7 +23,7 @@ var Client;
         }));
     });
     async function requestConcerts() {
-        let response = await fetch(`http://localhost:3000/concertEvents?concerts`);
+        let response = await fetch(`http://localhost:3000/concertEvents`);
         let text = await response.text();
         return JSON.parse(text);
     }
