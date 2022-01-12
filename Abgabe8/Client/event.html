@@ -1,57 +1,61 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="utf-8">
     <title>HTML Abgabe 1</title>
-    <link rel="stylesheet" href="style.css" >
+    <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="style.css" >
+    <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Italianno&display=swap" 
-    rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Italianno&display=swap" rel="stylesheet">
     <script src="script.js" defer></script>
 </head>
+
 <body>
-   <header>
-    <nav class="mainNav">
-          <ul>
-            <a href="index.html">Startseite</a>
-            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-            <a href="event.html">Event-Seite</a>
-          </ul>  
+    <header>
+        <nav class="mainNav">
+            <ul>
+                <a href="index.html">Startseite</a>
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                <a href="event.html">Event-Seite</a>
+            </ul>
         </nav>
-   </header>
-   <main>
-  <div>
-      <h3>Neues Event:</h3>
-      <p> Interpret
-      <input id= "interpret" type ="text" name="interpretinput"/>
-      </p>
-      <p>
-      Preis
-      <input id = "preis" type ="number" name="preisinput"/>
-      </p>
-      <p>Zeit
-      <input id = "datum" type ="datetime-local" name="dateinput"/>
-      </p>
-      <button id="enter" type="button">Event eintragen</button>
-  </div>
-  <div>
-    <table class = "table" >
-        <tbody id = "table">
-            <th>Interpret</th>
-            <th>Preis</th>
-            <th>Datum & Uhrzeit</th>
-        </tbody>   
-    </table>
-    <form id="form">
-        
-    </form>
-</div>
-   </main> 
-   <footer class = mainFooter>
-    Impressum
-   </footer>
+    </header>
+    <main>
+        <div>
+            <h3>Neues Event:</h3>
+            <p> Interpret
+                <input id="interpret" type="text" name="interpretinput" />
+            </p>
+            <p>
+                Preis
+                <input id="preis" type="number" name="preisinput" />
+            </p>
+            <p>Zeit
+                <input id="datum" type="datetime-local" name="dateinput" />
+            </p>
+            <button id="enter" type="button">Event eintragen</button>
+        </div>
+        <div>
+            <table class="table">
+                <tbody id="table">
+                    <tr id = "wichtig">
+                        <th>Interpret</th>
+                        <th>Preis</th>
+                        <th>Datum & Uhrzeit</th>
+                    </tr>
+                </tbody>
+            </table>
+            <form id="form">
+
+            </form>
+        </div>
+    </main>
+    <footer class=mainFooter>
+        Impressum
+    </footer>
 </body>
+
 </html>

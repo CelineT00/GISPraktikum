@@ -3,7 +3,7 @@ const url = "127.0.0.1"; //url
 const path = "/concertEvents";
 var Client;
 (function (Client) {
-    displayEvents(document.getElementById("table"));
+    displayEvents();
     let interpret = document.getElementById("interpret");
     let preis = document.getElementById("preis");
     let datum = document.getElementById("datum");
@@ -21,15 +21,17 @@ var Client;
             Preis: preis.value,
             Datum: datum.value
         }));
+        displayEvents();
     });
     async function requestConcerts() {
         let response = await fetch(`http://localhost:3000/concertEvents`);
         let text = await response.text();
         return JSON.parse(text);
     }
-    async function displayEvents(table) {
+    async function displayEvents() {
         let events = await requestConcerts();
-        let tbody = table.querySelector("tbody");
+        console.log(events);
+        let tbody = document.getElementById("table");
         removeChildren(tbody);
         for (let event of events) {
             let tr = document.createElement("tr");
@@ -46,8 +48,8 @@ var Client;
         }
     }
     function removeChildren(element) {
-        while (element.firstChild) {
-            element.removeChild(element.firstChild);
+        while (element.lastChild != document.getElementById("wichtig")) {
+            element.removeChild(element.lastChild);
         }
     }
 })(Client || (Client = {}));

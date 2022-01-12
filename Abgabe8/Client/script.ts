@@ -4,7 +4,7 @@
     
 namespace Client {
   
-  displayEvents(document.getElementById("table")as HTMLTableElement);
+  displayEvents();
 
    let interpret: HTMLInputElement = <HTMLInputElement> document.getElementById("interpret") as HTMLInputElement;
    let preis: HTMLInputElement = <HTMLInputElement> document.getElementById("preis") as HTMLInputElement;
@@ -41,6 +41,7 @@ namespace Client {
 
           })
         );
+        displayEvents();
          
       });
 
@@ -53,9 +54,10 @@ namespace Client {
       }
 
 
-      async function displayEvents(table: HTMLTableElement) {
+      async function displayEvents() {
         let events: Concerts[] = await requestConcerts();
-        let tbody: HTMLElement = <HTMLElement>table.querySelector("tbody");
+        console.log(events);
+        let tbody: HTMLTableElement = <HTMLTableElement>document.getElementById("table");
         removeChildren(tbody);
         for (let event of events) {
           let tr: HTMLTableRowElement = document.createElement("tr");
@@ -72,10 +74,11 @@ namespace Client {
         }
       }
 
-      function removeChildren(element: HTMLElement) {
-        while (element.firstChild) {
-          element.removeChild(element.firstChild);
-        }
+      function removeChildren(element: HTMLTableElement) {
+        while (element.lastChild != document.getElementById("wichtig")) {
+          element.removeChild(element.lastChild);
+        
+      }
       }
     
 }

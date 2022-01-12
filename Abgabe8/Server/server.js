@@ -4,7 +4,7 @@ const http = require("http");
 const mongo = require("mongodb");
 const hostname = "127.0.0.1";
 const port = 3000;
-const mongoUrl = "mongodb://localhost:27017"; // für lokale MongoDB
+const mongoUrl = "mongodb://127.0.0.1:27017"; // für lokale MongoDB
 let mongoClient = new mongo.MongoClient(mongoUrl);
 async function dbFind(db, collection, requestObject, response) {
     await mongoClient.connect();
@@ -49,7 +49,7 @@ const server = http.createServer(async (request, response) => {
         case "/concerts": {
             switch (request.method) {
                 case "GET":
-                    await dbFind("event", "concert", {}, response);
+                    await dbFind("tolskdor", "events", {}, response);
                     break;
             }
         }
@@ -57,12 +57,12 @@ const server = http.createServer(async (request, response) => {
             await mongoClient.connect();
             switch (request.method) {
                 case "GET":
-                    await dbFind("events", "concerts", {
-                        concerts: url.searchParams.get("concerts")
+                    await dbFind("tolksdor", "events", {
+                        concerts: url.searchParams.get("events")
                     }, response);
                     break;
                 case "POST":
-                    await dbAdd("events", "concerts", request);
+                    await dbAdd("tolksdor", "events", request);
                     break;
             }
             break;

@@ -1,10 +1,10 @@
 import * as http from "http";
 import * as mongo from "mongodb";
-  
+
     const hostname: string = "127.0.0.1"; 
     const port: number = 3000;
   
-    const mongoUrl: string = "mongodb://localhost:27017"; // für lokale MongoDB
+    const mongoUrl: string = "mongodb://127.0.0.1:27017"; // für lokale MongoDB
     let mongoClient: mongo.MongoClient = new mongo.MongoClient(mongoUrl);
 
     async function dbFind(
@@ -71,7 +71,7 @@ import * as mongo from "mongodb";
             case "/concerts": {
               switch (request.method) {
                 case "GET":
-                  await dbFind("event", "concert", {}, response);
+                  await dbFind("tolskdor", "events", {}, response);
                   break;
               }
             }
@@ -80,16 +80,16 @@ import * as mongo from "mongodb";
             switch (request.method) {
                 case "GET":
                   await dbFind(
+                    "tolksdor",
                     "events",
-                    "concerts",
                     {
-                      concerts: url.searchParams.get("concerts")
+                      concerts: url.searchParams.get("events")
                     },
                     response
                   );
                   break;
                 case "POST":
-                  await dbAdd("events", "concerts", request);
+                  await dbAdd("tolksdor", "events", request);
                   break;
               }
               break;
