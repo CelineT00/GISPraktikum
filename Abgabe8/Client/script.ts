@@ -35,9 +35,9 @@ namespace Client {
     sendJSONStringWithPOST(
       "http://localhost:3000/concertEvents",
       JSON.stringify({
-        Interpret: interpret.value,
-        Preis: preis.value,
-        Datum: datum.value
+        interpret: interpret.value,
+        preis: preis.value,
+        datum: datum.value
 
       })
     );
@@ -64,7 +64,7 @@ namespace Client {
         for (let info of [
             event.interpret,
             event.preis,
-            event.datum,
+            event.datum
         ]) {
             let td = document.createElement("td");
             td.textContent = `${info}`;
@@ -103,7 +103,6 @@ namespace Client {
     }
   }
   */
-
 
   function removeChildren(element: HTMLTableElement) {
     while (element.lastChild != document.getElementById("wichtig")) {

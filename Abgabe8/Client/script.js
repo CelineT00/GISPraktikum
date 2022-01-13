@@ -17,9 +17,9 @@ var Client;
     console.log(interpret);
     button.addEventListener("click", () => {
         sendJSONStringWithPOST("http://localhost:3000/concertEvents", JSON.stringify({
-            Interpret: interpret.value,
-            Preis: preis.value,
-            Datum: datum.value
+            interpret: interpret.value,
+            preis: preis.value,
+            datum: datum.value
         }));
         displayEvents();
     });
@@ -39,7 +39,7 @@ var Client;
             for (let info of [
                 event.interpret,
                 event.preis,
-                event.datum,
+                event.datum
             ]) {
                 let td = document.createElement("td");
                 td.textContent = `${info}`;
