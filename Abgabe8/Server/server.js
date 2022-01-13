@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+//db.events.drop() bei Aenderung, damit es funktioniert
 const http = require("http");
 const mongo = require("mongodb");
 const hostname = "127.0.0.1";

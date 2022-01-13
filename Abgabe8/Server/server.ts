@@ -1,3 +1,4 @@
+//db.events.drop() bei Aenderung, damit es funktioniert
 import * as http from "http";
 import * as mongo from "mongodb";
 
