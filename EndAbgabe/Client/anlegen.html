@@ -5,6 +5,7 @@
         <title>Übersicht Gefrierschrank</title>
         <meta name="viewport" content="width=device-width">
         <link rel="stylesheet" href="style.css" >
+        <script src="clientanlegen.js" defer></script>
 
     </head>
     <body>
@@ -17,6 +18,7 @@
     </body>
     <main>
         <div class="center">
+            <form id = "formanlegen">
             <h3>Neues Gefriergut anlegen:</h3>
             <p> Name
                 <input id="name" type="text" name="nameinput" />
@@ -26,7 +28,8 @@
             <p>Notiz
                 <input id="notiz" type="text" name="notizinput" />
             </p>
-            <button id="enter" type="button">Event eintragen</button>
+                <button id="enter" type="button">Bestaetigen</button>
+            </form>
         </div>
     </main>
     <footer>

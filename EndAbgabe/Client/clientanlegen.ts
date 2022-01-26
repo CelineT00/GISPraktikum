@@ -8,16 +8,11 @@ namespace ClientAnlegen {
   let ablaufDatum: HTMLInputElement = <HTMLInputElement>document.getElementById("ablaufdatum") as HTMLInputElement;
   let notiz: HTMLInputElement = <HTMLInputElement>document.getElementById("notiz") as HTMLInputElement;
   let button: HTMLElement = document.getElementById("enter");
-
-  interface NeuesProdukt {
-    _id?: string;
-    name: string;
-    ablaufDatum: Date;
-    notiz: string;
-    heuteDatum: Date;
-  }
+  let ablaufDatumProdukt: Date = new Date(ablaufDatum.value);
+  let form : HTMLFormElement = <HTMLFormElement> document.getElementById("formanlegen");
 
   class Produkt {
+    _id? : string;
     name: string;
     ablaufDatum: Date;
     notiz: string;
@@ -30,9 +25,7 @@ namespace ClientAnlegen {
       this.heuteDatum = heuteDatum;
     }
 
-    let produkt: Produkt = new Produkt(name.value,ablaufDatum,notiz,heutigesDatum);
-
-    editiereProdukt(produkt);
+  }
       
     async function sendJSONStringWithPOST(
       url: RequestInfo,
@@ -45,9 +38,8 @@ namespace ClientAnlegen {
   }
 
   button.addEventListener("click", () => {
-
     sendJSONStringWithPOST(
-      "http://localhost:3000/",
+      "http://localhost:3000/neueProdukte",
       JSON.stringify({
         name: name.value,
         ablaufDatum: ablaufDatum.value,
@@ -56,16 +48,31 @@ namespace ClientAnlegen {
       })
     );
   });
-
-  async function findeProdukt(id: string): Promise<NeuesProdukt[]> {
-    let response: Response = await fetch(`http://localhost:3000/alleProdukte?_id=${id}`);
+  
+/*
+  async function findeProdukt(id: string): Promise<Produkt[]> {
+    let response: Response = await fetch(`http://localhost:3000/einzelneProdukte?_id=${id}`);
     let text: string = await response.text();
-    return JSON.parse(text) as NeuesProdukt[];
+    return JSON.parse(text) as Produkt[];
+  }
+
+  async function frageProdukteAn(): Promise<Produkt[]> {
+    let response: Response = await fetch(
+        `http://localhost:3000/alleProdukte`
+    );
+    let text: string = await response.text();
+    return JSON.parse(text) as Produkt[];
+}
+
+  async function produktEditieren(event : Event){
+      event.preventDefault();
+      let produktArray: Produkt[] = await frageProdukteAn();
+      
   }
 
   async function editiereProdukt(event: Event) {
     let target: HTMLElement = <HTMLElement>event.currentTarget;
-    let neuesprodukt: NeuesProdukt = (await findeProdukt(target.dataset?.id || ""))[0];
+    let neuesprodukt: Produkt = (await findeProdukt(_id? || ""))[0];
     neuesprodukt = neuesprodukt || {
       _id: "",
       name: "",
@@ -82,7 +89,7 @@ namespace ClientAnlegen {
     ]) {
       let input: HTMLElement = <HTMLElement>document.querySelector(`#${info[0]}`);
     }
-  }
+  }*/
 
 
 }

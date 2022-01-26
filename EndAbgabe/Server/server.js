@@ -59,6 +59,7 @@ const server = http.createServer(async (request, response) => {
             switch (request.method) {
                 case "POST":
                     await mongoDBHinzufuegenuBearbeiten("tolksdor", "produkte", request);
+                    console.log("gefunden");
                     break;
             }
             break;
@@ -67,7 +68,7 @@ const server = http.createServer(async (request, response) => {
             await mongoClient.connect();
             switch (request.method) {
                 case "GET":
-                    await mongoDBFinden("tolksdor", "produkte", { name: url.searchParams.get("name") }, response);
+                    await mongoDBFinden("tolksdor", "produkte", { _id: url.searchParams.get("_id") }, response);
                     break;
             }
         }
