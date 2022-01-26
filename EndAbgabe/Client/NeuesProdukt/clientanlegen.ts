@@ -4,11 +4,8 @@ const pathclientanlegen: string = "/neueProdukte";
 namespace ClientAnlegen{
 
     let heutigesDatum: Date = new Date();
-    let datumFormatiert: string = heutigesDatum.toLocaleDateString(); // passendes Format für Anzeige
     let name: HTMLInputElement = <HTMLInputElement>document.getElementById("name") as HTMLInputElement;
     let ablaufDatum: HTMLInputElement = <HTMLInputElement>document.getElementById("ablaufdatum") as HTMLInputElement;
-    let ablaufDatumString: Date = ablaufDatum.toLocaleDateString();
-    let ablaufDatumFormatiert: string  = ablaufDatumString.toLocalDateString();
     let notiz: HTMLInputElement = <HTMLInputElement>document.getElementById("notiz") as HTMLInputElement;
     let button: HTMLElement = document.getElementById("enter");
 
@@ -55,9 +52,9 @@ namespace ClientAnlegen{
         neuesprodukt = neuesprodukt || {
           _id: "",
           name: "",
-          ablaufDatum: HTMLInputElement,
+          ablaufDatum: heutigesDatum,
           notiz: "",
-          heuteDatum: datumFormatiert, 
+          heuteDatum: heutigesDatum, 
         };
         for(let info of[
           ["_id", neuesprodukt._id],
