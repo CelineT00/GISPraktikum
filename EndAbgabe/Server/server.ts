@@ -12,9 +12,9 @@ async function mongoDBFinden(
     collection: string,
     requestObject: any,
     response: http.ServerResponse
-) {
+): Promise<void> {
     await mongoClient.connect();
-    let result = await mongoClient
+    let result: any = await mongoClient
         .db(db)
         .collection(collection)
         .find(requestObject)
@@ -51,6 +51,29 @@ async function mongoDBHinzufuegenuBearbeiten(
         }
     });
 }
+async function mongoDBLoeschen(
+    db: string,
+    collection: string,
+    request: http.IncomingMessage
+) {
+    let jsonString = "";
+    request.on("data", data => {
+        jsonString += data;
+    });
+    request.on("end", async () => {
+        await mongoClient.connect();
+        let produkte = JSON.parse(jsonString);
+        if (produkte._id && produkte._id !== "") {
+            produkte._id = new mongo.ObjectId(produkte._id);
+            mongoClient.db(db).collection(collection).deleteOne(
+                {
+                    _id: produkte._id,
+                }
+            );
+        }
+    });
+}
+
 
 const server: http.Server = http.createServer(
     async (request: http.IncomingMessage, response: http.ServerResponse) => {
@@ -70,8 +93,22 @@ const server: http.Server = http.createServer(
                 await mongoClient.connect();
                 switch (request.method) {
                     case "GET":
-                        await mongoDBFinden("tolskdor", "produkte", {}, response);
+                        await mongoDBFinden(
+                            "tolksdor",
+                            "produkte",
+                            {},
+                            response
+                        );
                         break;
+                    case "POST":
+                        console.log("hier")
+                        await mongoDBLoeschen(
+                            "tolksdor",
+                            "produkte",
+                            request
+                        );
+                        console.log("funktioniert");
+                        break;   
                 }
                 break;
             }
@@ -79,7 +116,11 @@ const server: http.Server = http.createServer(
                 await mongoClient.connect();
                 switch (request.method) {
                     case "POST":
-                        await mongoDBHinzufuegenuBearbeiten("tolksdor", "produkte", request);
+                        await mongoDBHinzufuegenuBearbeiten(
+                            "tolksdor",
+                            "produkte",
+                            request
+                        );
                         console.log("gefunden")
                         break;
                 }
@@ -89,9 +130,17 @@ const server: http.Server = http.createServer(
                 await mongoClient.connect();
                 switch (request.method) {
                     case "GET":
-                        await mongoDBFinden("tolksdor", "produkte", { _id: url.searchParams.get("_id") }, response);
+                        await mongoDBFinden(
+                            "tolksdor",
+                            "produkte",
+                            { _id: url.searchParams.get("_id") },
+                            response
+                        );
+                        break;
+                        console.log("gefunden")
                         break;
                 }
+                break;
             }
             default:
                 response.statusCode = 404;
@@ -99,6 +148,7 @@ const server: http.Server = http.createServer(
         response.end();
     }
 );
+
 
 
 server.listen(port, hostname, () => {

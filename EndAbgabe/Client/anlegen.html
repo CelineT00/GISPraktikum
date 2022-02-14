@@ -1,38 +1,61 @@
 <!DOCTYPE html>
 <html lang="de">
-    <head>
-        <meta charset="utf-8"/>
-        <title>Übersicht Gefrierschrank</title>
-        <meta name="viewport" content="width=device-width">
-        <link rel="stylesheet" href="style.css" >
-        <script src="clientanlegen.js" defer></script>
 
-    </head>
-    <body>
-        <header>
-            <div class="center">
-                <a href="uebersicht.html">Übersichtsseite</a>
-                <a href= "anlegen.html">Anlegen von neuem Gefriergut</a>
-            </div>
-        </header>
-    </body>
-    <main>
+<head>
+    <meta charset="utf-8" />
+    <title>Anlgene Neues Produkt</title>
+    <script src="clientanlegen.js" defer></script>
+    <meta name="viewport" content="width=device-width" , initial-scale=1.0, user-scalable="yes" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Italianno&family=Supermercado+One&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
         <div class="center">
-            <form id = "formanlegen">
-            <h3>Neues Gefriergut anlegen:</h3>
+            <nav>
+                <ol class="nav" id="navevents">
+                    <li class="navitem"><a href="produktanzeige.html">Übersichtsseite</a></li>
+                    <li class="navitem"><a href="anlegen.html">Anlegen von neuem Gefriergut</a></li>
+                </ol>
+            </nav>
+        </div>
+    </header>
+</body>
+<main>
+    <div id="headline">
+        <form id="formanlegen">
+            <h3 class=Locations>Neues Gefriergut anlegen:</h3>
             <p> Name
                 <input id="name" type="text" name="nameinput" />
             </p>
             <p>Ablaufdatum
-                <input id="ablaufdatum" type="datetime-local" name="ablaufdatuminput" />            </p>
+                <input id="ablaufdatum" type="datetime-local" name="ablaufdatuminput" />
+            </p>
             <p>Notiz
                 <input id="notiz" type="text" name="notizinput" />
             </p>
-                <button id="enter" type="button">Bestaetigen</button>
-            </form>
-        </div>
-    </main>
-    <footer>
-        
-    </footer>
+            <p>Kategorie
+                <select id="kategorie">
+                    <option>-------------</option>
+                    <option value="Gemuese">Gemuese &#127814;</option>
+                    <option value="Obst">Obst &#127822;</option>
+                    <option value="Fleisch">Fleisch &#129385;</option>
+                    <option value="Pizza">Pizza &#127829;</option>
+                </select>
+            </p>
+            <button id="enter" type="button">Bestaetigen</button>
+        </form>
+    </div>
+</main>
+<footer>
+    <div ol class="footer">
+        <p id="line" class="footeritem"> Autor: Celine Tolksdorf</p>
+        </ol>
+    </div>
+</footer>
+
 </html>

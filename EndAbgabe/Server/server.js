@@ -37,6 +37,22 @@ async function mongoDBHinzufuegenuBearbeiten(db, collection, request) {
         }
     });
 }
+async function mongoDBLoeschen(db, collection, request) {
+    let jsonString = "";
+    request.on("data", data => {
+        jsonString += data;
+    });
+    request.on("end", async () => {
+        await mongoClient.connect();
+        let produkte = JSON.parse(jsonString);
+        if (produkte._id && produkte._id !== "") {
+            produkte._id = new mongo.ObjectId(produkte._id);
+            mongoClient.db(db).collection(collection).deleteOne({
+                _id: produkte._id,
+            });
+        }
+    });
+}
 const server = http.createServer(async (request, response) => {
     response.statusCode = 200;
     response.setHeader("Access-Control-Allow-Origin", "*");
@@ -49,7 +65,12 @@ const server = http.createServer(async (request, response) => {
             await mongoClient.connect();
             switch (request.method) {
                 case "GET":
-                    await mongoDBFinden("tolskdor", "produkte", {}, response);
+                    await mongoDBFinden("tolksdor", "produkte", {}, response);
+                    break;
+                case "POST":
+                    console.log("hier");
+                    await mongoDBLoeschen("tolksdor", "produkte", request);
+                    console.log("funktioniert");
                     break;
             }
             break;
@@ -70,7 +91,10 @@ const server = http.createServer(async (request, response) => {
                 case "GET":
                     await mongoDBFinden("tolksdor", "produkte", { _id: url.searchParams.get("_id") }, response);
                     break;
+                    console.log("gefunden");
+                    break;
             }
+            break;
         }
         default:
             response.statusCode = 404;

@@ -1,25 +1,51 @@
 <!DOCTYPE html>
 <html lang="de">
-    <head>
-        <meta charset="utf-8"/>
-        <title>Übersicht Gefrierschrank</title>
-        <meta name="viewport" content="width=device-width">
-        <script src="detailansicht.js" defer></script>
-    </head>
-    <body>
-        <header>
-            <a href="uebersicht.html">Übersichtsseite</a>
-            <a href= "anlegen.html">Anlegen von neuem Gefriergut</a>   
-        </header>
-    </body>
-    <main>
-        <div>
-            <button id="bearbeiten" type="button">Gefriergut bearbeiten</button>
 
-            <button id="loeschen" type="button">Loeschen</button>
-        </div>
-    </main>
-    <footer>
-        
-    </footer>
+<head>
+    <meta charset="utf-8" />
+    <title>Detailansicht Gefrierschrank</title>
+    <script src="detailansicht.js" defer></script>
+    <meta name="viewport" content="width=device-width" , initial-scale=1.0, user-scalable="yes" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Italianno&family=Supermercado+One&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ol class="nav" id="navevents">
+                <li class="navitem"><a href="produktanzeige.html">Übersichtsseite</a></li>
+                <li class="navitem"><a href="anlegen.html">Anlegen von neuem Gefriergut</a></li>
+            </ol>
+        </nav>
+    </header>
+</body>
+<main>
+    <div id="headline">
+        <h3 id=Locations>Details des Produktes:</h3>
+        <table id=tabelledetail class="tabledetail">
+            <tbody id="tbodyTabelledetail">
+                <tr id="trTabelledetail">
+                    <th>Bearbeiten</th>
+                    <th>Loeschen</th>
+                    <th>Name</th>
+                    <th>Ablaufdatum</th>
+                    <th>Notiz</th>
+                    <th>Kategorie</th>
+                    <th>AnlegeDatum</th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+<footer>
+    <div ol class="footer">
+        <p id="line" class="footeritem"> Autor: Celine Tolksdorf</p>
+        </ol>
+    </div>
+</footer>
+
 </html>

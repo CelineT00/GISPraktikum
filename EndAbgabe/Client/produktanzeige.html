@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Übersicht Gefrierschrank</title>
+    <meta name="viewport" content="width=device-width" , initial-scale=1.0, user-scalable="yes" />
+    <script src="produktanzeige.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Italianno&family=Supermercado+One&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ol class="nav" id="navevents">
+                <li class="navitem"><a href="produktanzeige.html">Übersichtsseite</a></li>
+                <li class="navitem"><a href="anlegen.html">Anlegen von neuem Gefriergut</a></li>
+            </ol>
+
+        </nav>
+    </header>
+    <main>
+        <div id="headline">
+            <label for="filter">Filtere deine Suche:</label>
+            <select name="filter" id="filter" multiple>
+                <option value="alleProdukte">Alle Produkte</option>
+                <option value="abgelaufen">Abgelaufen</option>
+                <option value="baldabgelaufen">bald Abgelaufen</option>
+                <option value="gemuese">Gemuese</option>
+                <option value="obst">Obst</option>
+                <option value="fleisch">Fleisch</option>
+                <option value="pizza">Pizza</option>
+            </select>
+            <button id="enter" type="button">Bestaetigen</button>
+            <div>
+                <h3 id=Locations>Produkte:</h3>
+                <table id=tabelle class="table">
+                    <tbody id="tbodyTabelle">
+                        <tr id="trTabelle">
+                            <th>zur Detailansicht</th>
+                            <th>Name</th>
+                            <th>Ablaufdatum</th>
+                            <th>Kategorie</th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+    </main>
+</body>
+<footer>
+    <div ol class="footer">
+        <p id="line" class="footeritem"> Autor: Celine Tolksdorf</p>
+        </ol>
+    </div>
+</footer>
+
+</html>
